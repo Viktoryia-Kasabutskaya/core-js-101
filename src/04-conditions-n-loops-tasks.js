@@ -63,7 +63,7 @@ function getFactorial(n) {
  */
 function getSumBetweenNumbers(n1, n2) {
   let sum = 0;
-  for (let i = n1; i <= n2; i++) {
+  for (let i = n1; i <= n2; i += 1) {
     sum += i;
   }
   return sum;
@@ -127,10 +127,10 @@ function doRectanglesOverlap(rect1, rect2) {
   const rect2Bottom = rect2.height + rect2.top;
 
   return (
-    rect1Bottom > rect2.top &&
-    rect1Right > rect2.left &&
-    rect2Bottom > rect1.top &&
-    rect2Right > rect1.left
+    rect1Bottom > rect2.top
+    && rect1Right > rect2.left
+    && rect2Bottom > rect1.top
+    && rect2Right > rect1.left
   );
 }
 
@@ -161,10 +161,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *
  */
 function isInsideCircle(circle, point) {
-  return (
-    (point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2 <
-    circle.radius ** 2
-  );
+  return ((point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2 < circle.radius ** 2);
 }
 
 /**
@@ -179,7 +176,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
       return str[i];
     }
@@ -213,9 +210,7 @@ function findFirstSingleChar(str) {
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
   const arr = [a, b].sort((c, d) => c - d);
 
-  return `${isStartIncluded ? '[' : '('}${arr[0]}, ${arr[1]}${
-    isEndIncluded ? ']' : ')'
-  }`;
+  return `${isStartIncluded ? '[' : '('}${arr[0]}, ${arr[1]}${isEndIncluded ? ']' : ')'}`;
 }
 
 /**
@@ -401,7 +396,7 @@ function getCommonDirectoryPath(pathes) {
 
   let result = '';
 
-  for (let i = 0; i < first.length; i++) {
+  for (let i = 0; i < first.length; i += 1) {
     if (pathSplit.every((item) => item[i] === first[i])) {
       result = result.concat(first[i], '/');
     }
@@ -475,36 +470,20 @@ function getMatrixProduct(m1, m2) {
  */
 function evaluateTicTacToePosition(position) {
   for (let i = 0; i < 3; i += 1) {
-    if (
-      position[i][0] &&
-      position[i][0] === position[i][1] &&
-      position[i][1] === position[i][2]
-    ) {
+    if (position[i][0] && position[i][0] === position[i][1] && position[i][1] === position[i][2]) {
       return position[i][0];
     }
 
-    if (
-      position[0][i] &&
-      position[0][i] === position[1][i] &&
-      position[1][i] === position[2][i]
-    ) {
+    if (position[0][i] && position[0][i] === position[1][i] && position[1][i] === position[2][i]) {
       return position[0][i];
     }
   }
 
-  if (
-    position[0][0] &&
-    position[0][0] === position[1][1] &&
-    position[1][1] === position[2][2]
-  ) {
+  if (position[0][0] && position[0][0] === position[1][1] && position[1][1] === position[2][2]) {
     return position[0][0];
   }
 
-  if (
-    position[0][2] &&
-    position[0][2] === position[1][1] &&
-    position[1][1] === position[2][0]
-  ) {
+  if (position[0][2] && position[0][2] === position[1][1] && position[1][1] === position[2][0]) {
     return position[0][2];
   }
   return undefined;

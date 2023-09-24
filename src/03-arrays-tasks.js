@@ -228,13 +228,11 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  return arr.reduce((result, item) => {
-    if (result.length > 0) {
-      item += result[result.length - 1];
-    }
-    result.push(item);
-    return result;
-  }, []);
+  let sum = 0;
+  return arr.map((item) => {
+    sum += item;
+    return sum;
+  });
 }
 
 /**
@@ -425,9 +423,7 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(arr) {
-  return arr.sort(
-    (x, y) => x.country.localeCompare(y.country) || x.city.localeCompare(y.city)
-  );
+  return arr.sort((x, y) => x.country.localeCompare(y.country) || x.city.localeCompare(y.city));
 }
 
 /**
@@ -449,11 +445,7 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  return new Array(n).fill(0).map((_, index) =>
-    Array(n)
-      .fill(0)
-      .fill(1, index, index + 1)
-  );
+  return new Array(n).fill(0).map((_, index) => Array(n).fill(0).fill(1, index, index + 1));
 }
 
 /**
